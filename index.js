@@ -29,9 +29,7 @@ const payloadObj = {
   "sub": "a41a5b14-476b-4043-8e05-820c16a37395",
   "aud": "https://fhir.epic.com/interconnect-fhir-oauth/oauth2/token",
   "jti": uuidv4(),
-  "exp": epochTime,
-  "nbf": epochTime,
-  "iat": epochTime
+  "exp": epochTime
 };
 
 /**
@@ -69,9 +67,13 @@ jwt.verify(signedJWT, PUB_KEY, { algorithms: ['RS384'] }, (err, payload) => {
     console.log('Your JWT was successfully validated!');
   }
 
+  else{
+    console.log(err)
+  }
+
   // Both should be the same
   console.log(payload);
-  console.log("error: "+err);
+  // console.log("error: "+err);
 });
 
 // axios
@@ -107,5 +109,5 @@ axios(config)
   console.log(JSON.stringify(response.data));
 })
 .catch(function (error) {
-  // console.log(error);
+  console.log(error);
 });
